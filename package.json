@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "name": "mfers",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mfers-dev/mfers.git"
+  },
+  "type": "module",
+  "description": "quick and easy access to mfers metadata",
+  "main": "dist/index.cjs",
+  "module": "dist/index-esm.js",
+  "unpkg": "dist/index-umd.min.js",
+  "browser": "dist/browser-esm.js",
+  "license": "ISC",
+  "author": {
+    "name": "m4rsh",
+    "email": "hey@m4r.sh",
+    "url": "https://m4r.sh"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "browser": "./dist/browser-esm.js",
+    "node": "./dist/index.cjs",
+    "import": "./dist/browser-esm.js",
+    "require": "./dist/index.cjs"
+  },
+  "scripts": {
+    "build": "node scripts/compress-mfers && rollup -c",
+    "test": "node scripts/test-mfers"
+  },
+  "keywords": [
+    "mfers",
+    "javascript",
+    "nft",
+    "traits",
+    "cc0",
+    "sartoshi"
+  ],
+  "devDependencies": {
+    "dequal": "^2.0.2",
+    "rollup": "^2.69.1",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

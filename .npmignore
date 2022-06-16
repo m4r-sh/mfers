@@ -1,0 +1,8 @@
+.DS_Store
+*-lock.*
+*.lock
+*.log
+.env
+
+data/raw-mfers.json
+meta
