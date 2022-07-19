@@ -70,7 +70,13 @@ mfers[3664]
 //      "headphones": "gold headphones",
 //      "hat over headphones": "hoodie",
 //      "smoke": "cig white"
-//    }
+//    },
+//    colors: [
+//      '#000000', '#ffffff', '#353535', '#191919',
+//      '#141414', '#e2aa46', '#c48d2e', '#e59f5f',
+//      '#7dd0ff', '#313131', '#558aff', '#1350d8',
+//      '#b90000', '#ff2222', '#fa3434'
+//    ]
 // }
 ```
 
@@ -89,6 +95,24 @@ traits['chain']
 
 traits['hat over headphones']
 // ~> [ "cowboy hat", "top hat", "hoodie", "pilot helmet" ]
+```
+
+
+### `colors`
+
+An object containing an array of colors for each trait variant (not including 1/1's). Output array is sorted by number of pixels the color occupies in the layer.
+
+```js
+import { colors } from 'mfers';
+
+colors['headphones']['pink headphones']
+// ~> [ "#ff9295", "#000000", "#ff7174"]
+
+colors['background']['graveyard']
+// ~> [ "#7c7c7c", "#090908", "#a7a7a5", "#ffc954", "#686867"]
+
+colors['eyes']['purple shades']
+// ~> [ "#000000", "#952791", "#6b2768", "#f147eb"]
 ```
 
 ### `MFERS_CONTRACT`

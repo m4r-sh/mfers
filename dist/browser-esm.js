@@ -74,6 +74,8 @@ function padLeft(str,ideal_length){
   return "0".repeat(ideal_length - str.length) + str
 }
 
+let compressed_colors = `090c16,df;,ffdc31|562f1a,,391e0e;,f00;35,,19,14;80da65,,5fba43,7bb66a,8ee873,06c0d4,4feeff,3d6830,59bb3b|,0958e6;f00,;,ff6a6a;,01c200;;ffcb00,;b300ff,;,ffd315;;,9100ff;,f00||;ffd315,|,f00,b1,ff,e7;,ff,006dff,d9;,00a50c,ff,d9;,c3,8a,100808;,d9,ff;,ff,d9,7a;,0071ff,ff,d9;,ffdc31,ff,fff075;,ff7979,ff,d9;,00fdd6,ff,d9;,cfd7d7,8a,ff;,ff,006dff,f00,d9|,4c6aff,1d39c6;,35,19,14,2e;,ff,ba;,ff,04,af;,187f1d,056e0b;,001e00,16ad00,027000,060;,002,033cb9,001e78,00196e;,ff6969,aa3e3e,3b0606,9d3838;,f2cd43,d8b329;1e0000,,ad0000,700000,600;,48fffb,14cac5;,dd7878,d65959|00001d,1d24bd,bd1d1d;35,110d00,,46;,f1fff8,26d200;,3c5dfc,fff21c,f00,6eff3f;000013,292595,fb;,ff,425bed,3a51d7;c10000,110d00,,850505;,24,930000;,674939,f50;100000,b41c18,fac620;,27,ffb80c;,1f,580094;04061a,121966,f50;31,010405,,42;020000,762d2c,9a6e45;00171e,18b5c4,fc7a14;,ff,ff7f7f;,1e,657279;010203,9518e0,a532ea,6a1a99,9828db,af40f0,8d16d4;,01dd32,425bed,3a51d7;,1045ff,305fff,2b4ec9,07289b,416cff;000900,227a09,ff;,e00000,425bed,3a51d7;,47,8e|;,ff;|,1f1d16;ff,,e7;ff9295,,ff7174;e2aa46,,c48d2e,e59f5f;382fce,,2418e5;2c793f,,2f9549,187a30;e41818,;ff,,e7|ff7c7c;ffba7a;7c,090908,a7a7a5,ffc954,686867;c7ff81;ffe375;7dd0ff;ffe375,,2e7d27;797a7a,,f2,2466fa,2ea930|ff,,31;85,99,81,;5a7c47,6f8f59,;735a44,70563f,bda88a,8b7764,c8b79e,;aae9f7,92d9e6,|;,4c6ebf,11358e,6290ff;,48,24,ea2120;,25,ff;,8ad8ff;,ff,558aff,1350d8,b90000,f22,fa3434;,952791,6b2768,f147eb;;,3b8898|;`;
+
 let MFERS_CONTRACT = "0x79fcdef22feed20eddacbb2587640e45491b757f";
 
 let traits = { 
@@ -81,9 +83,34 @@ let traits = {
   "1/1": uniques.map(([_,traits]) => traits["1/1"])
 };
 
+let normal_trait_keys = Object.keys(traits_to_compress);
+
+let color_map = compressed_colors.split('|').map(s => s.split(';').map(s => s.split(',').map(s => {
+  if(!s || s.length == 0){
+    s = '000000';
+  } else if(s.length == 2){
+    s = s + s + s;
+  } else if(s.length == 3){
+    let [r,g,b]=s.split('');
+    s = r + r + g + g + b + b;
+  }
+  return '#'+s
+})));
+
+let trait_colors = {};
+for(let i = 0; i < normal_trait_keys.length; i++){
+  let trait_type = normal_trait_keys[i];
+  let variants = traits_to_compress[trait_type];
+  trait_colors[trait_type] = {};
+  for(let j = 0; j < variants.length; j++){
+    trait_colors[trait_type][variants[j]] = color_map[i][j];
+  }
+}
+let colors = trait_colors;
+
 // store the # of bits needed to encode each trait's variations (including "none")
 let bit_frames = {};
-Object.keys(traits_to_compress).forEach(trait_type => {
+normal_trait_keys.forEach(trait_type => {
   bit_frames[trait_type] = (traits_to_compress[trait_type].length).toString(2).length;
 });
 
@@ -95,18 +122,24 @@ function expand(decoder){
     let mfer = { i, traits: {} };
     let mfer_bits = byte_str.substr(i * bits_per_mfer, bits_per_mfer);
     let cursor = 0;
-    Object.keys(traits_to_compress).forEach(trait_type => {
+    let mfer_colors = {};
+    normal_trait_keys.forEach(trait_type => {
       let frame_size = bit_frames[trait_type];
       let variant_index = parseInt(mfer_bits.substr(cursor, frame_size),2) - 1;
       if(variant_index >= 0){
-        mfer.traits[trait_type] = traits_to_compress[trait_type][variant_index];
+        let variant = traits_to_compress[trait_type][variant_index];
+        mfer.traits[trait_type] = variant;
+        trait_colors[trait_type][variant].forEach(c => {
+          mfer_colors[c] = mfer_colors[c] ? mfer_colors[c]+1 : 1;
+        });
       }
       cursor += frame_size;
     });
+    mfer.colors = Object.keys(mfer_colors).sort((a,b) => mfer_colors[b] - mfer_colors[a]);
     mfers.push(mfer);
   }
   uniques.forEach(([i,unique_traits]) => {
-    mfers[i] = { i, traits: unique_traits};
+    mfers[i] = { i, traits: unique_traits, colors: ['#000000','#ffffff']};
   });
   return mfers
 }
@@ -122,4 +155,4 @@ function base64ToBinaryString(b64, decoder){
 
 let mfers = expand(b64 => window.atob(b64));
 
-export { MFERS_CONTRACT, mfers, traits };
+export { MFERS_CONTRACT, colors, mfers, traits };

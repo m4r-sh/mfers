@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { mfers } from '../src/node.js'
+import { mfers, colors } from '../src/node.js'
 import { dequal } from 'dequal'
 
 const mfers_data = JSON.parse(fs.readFileSync('./data/mfers.json'))
@@ -8,8 +8,7 @@ const mfers_data = JSON.parse(fs.readFileSync('./data/mfers.json'))
 const trimmed_input = mfers_data.map(({ traits, i }) => ({ traits, i }) )
 
 console.log(
-  dequal(trimmed_input, mfers)
+  dequal(trimmed_input, mfers.map(({ traits, i}) => ({ traits, i })))
   ? "mfers passed the test!"
   : "mfers failed the test :("
 )
-
