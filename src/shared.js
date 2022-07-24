@@ -45,12 +45,12 @@ export function expand(decoder){
   let mfers = []
   for(let i = 0; i < 10021; i++){
     let mfer = { i, traits: {} }
-    let mfer_bits = byte_str.substr(i * bits_per_mfer, bits_per_mfer)
+    let mfer_bits = byte_str.substring(i * bits_per_mfer, bits_per_mfer + i*bits_per_mfer)
     let cursor = 0
     let mfer_colors = {}
     normal_trait_keys.forEach(trait_type => {
       let frame_size = bit_frames[trait_type]
-      let variant_index = parseInt(mfer_bits.substr(cursor, frame_size),2) - 1
+      let variant_index = parseInt(mfer_bits.substring(cursor, frame_size + cursor),2) - 1
       if(variant_index >= 0){
         let variant = traits_to_compress[trait_type][variant_index]
         mfer.traits[trait_type] = variant
@@ -70,7 +70,7 @@ export function expand(decoder){
 }
 
 function base64ToBinaryString(b64, decoder){
-  let byte_arr = Uint8Array.from(decoder(b64))
+  let byte_arr = decoder(b64)
   let byte_str = ""
   byte_arr.forEach(n => {
     byte_str += padLeft((n).toString(2), 8)
