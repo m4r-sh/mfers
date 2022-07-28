@@ -45,7 +45,6 @@ function compress(mfers){
   return binaryStringToBase64(bit_str)
 }
 
-// "10011001 11110111 10101011" ~> "mfer"
 function binaryStringToBase64(string) {
   // ensure binary is a multiple of 8
   string = padRight(string, Math.ceil(string.length / 8) * 8)

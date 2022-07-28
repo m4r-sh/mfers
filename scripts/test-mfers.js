@@ -12,3 +12,17 @@ console.log(
   ? "mfers passed the test!"
   : "mfers failed the test :("
 )
+
+
+// let trimmed_mfers = mfers.map(({ traits, i}) => ({ traits, i }))
+
+// console.log(trimmed_mfers[10000])
+// console.log(trimmed_input[10000])
+
+
+// trimmed_input.forEach((og,i) => {
+//   let mfer = trimmed_mfers[i]
+//   if(!dequal(og,mfer)){
+//     console.log(i)
+//   }
+// });
