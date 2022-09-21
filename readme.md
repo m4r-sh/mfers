@@ -26,7 +26,7 @@
 - Metadata compressed from 7.5MB ~> 75kB
 - Isomorphic: works on both NodeJS and browser
 
-> Looking for JSON data files? Check [here](https://github.com/m4r-sh/mfers/tree/main/data)
+> Looking for JSON data files? Check [here](https://github.com/mfers-dev/mfers/tree/main/data)
 
 ## Install
 
