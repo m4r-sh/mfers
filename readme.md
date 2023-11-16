@@ -56,6 +56,8 @@ import { mfers, traits, MFERS_CONTRACT } from 'https://cdn.skypack.dev/mfers';
 
 An ordered array of mfer metadata. Index in array = mfer token id (mfer #3664 ~> `mfer[3664]`)
 
+Each mfer provides `traits`, `colors`, and `description`
+
 ```js
 import { mfers } from 'mfers';
 
@@ -76,7 +78,12 @@ mfers[3664]
 //      '#141414', '#e2aa46', '#c48d2e', '#e59f5f',
 //      '#7dd0ff', '#313131', '#558aff', '#1350d8',
 //      '#b90000', '#ff2222', '#fa3434'
-//    ]
+//    ],
+//    description: "a simple hand-drawn stick figure wearing
+//      3D glasses with red and blue lenses with a soft smile
+//      and smoking a cig. They have no hair, are wearing
+//      gold headphones, and are wearing a dark gray hoodie
+//      with the hood up over the headphones"
 // }
 ```
 
@@ -115,9 +122,14 @@ colors['eyes']['purple shades']
 // ~> [ "#000000", "#952791", "#6b2768", "#f147eb"]
 ```
 
+### `describe_traits(mfer_traits)`
+
+A function that describes arbitrary trait combinations using plain english, ideal for LLMs and GPTs.
+This was used for [MferGPT](https://x.com/m4rsh___/status/1723490110958702632)
+
 ### `MFERS_CONTRACT`
 
-[Contract address]((https://etherscan.io/token/0x79FCDEF22feeD20eDDacbB2587640e45491b757f)) for mfers
+[Contract address](https://etherscan.io/token/0x79FCDEF22feeD20eDDacbB2587640e45491b757f) for mfers
 
 ```js
 import { MFERS_CONTRACT } from 'mfers';
