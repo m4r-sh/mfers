@@ -346,6 +346,6 @@ function combine(arr){
   else return arr.slice(0,arr.length-1).join(', ') + ', and ' + arr[arr.length-1]
 }
 
-let mfers = expand(b64 => Uint8Array.from(window.atob(b64), (v) => v.charCodeAt(0)));
+let mfers = expand(b64 => Uint8Array.from(atob(b64), (v) => v.charCodeAt(0)));
 
 export { MFERS_CONTRACT, colors, describe_traits, mfers, traits };
