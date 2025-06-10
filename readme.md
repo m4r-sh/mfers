@@ -1,14 +1,14 @@
 <div align="center">
-  <img src="https://github.com/mfers-dev/mfers/raw/main/meta/social.png" alt="mfers" width="400" />
+  <img src="https://github.com/m4r-sh/mfers/raw/main/meta/social.png" alt="mfers" width="400" />
 </div>
 
 <h1 align="center">mfers</h1>
 <div align="center">
   <a href="https://npmjs.org/package/mfers">
-    <img src="https://badgen.now.sh/npm/v/mfers" alt="version" />
+    <img src="https://badgen.net/npm/v/mfers" alt="version" />
   </a>
   <a href="https://bundlephobia.com/result?p=mfers">
-    <img src="https://img.badgesize.io/mfers-dev/mfers/main/dist/es.min.js?compression=brotli" alt="download size" />
+    <img src="https://badgen.net/bundlephobia/minzip/mfers" alt="download size" />
   </a>
 </div>
 
