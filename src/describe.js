@@ -39,21 +39,21 @@ export function describe(trait_obj){
       if(short_hair){
         let [hairstyle,color] = short_hair.split(' ')
         if(hairstyle == 'messy'){
-          return `have ${color} short and messy hair`
+          return `has ${color} short and messy hair`
         }
         if(hairstyle == 'mohawk'){
-          return `have a ${color} mohawk hairstyle`
+          return `has a ${color} mohawk hairstyle`
         }
       }
       if(long_hair){
         if(long_hair == 'long hair black'){
-          return `have long, mid-back length black hair`
+          return `has long, mid-back length black hair`
         }
         if(long_hair == 'long hair yellow'){
-          return `have long, mid-back length blonde hair`
+          return `has long, mid-back length blonde hair`
         }
       }
-      return `have no hair`
+      return `has no hair`
     },
     headphones(){
       return headphones
@@ -160,7 +160,7 @@ export function describe(trait_obj){
         wearing.push(`a ${watch_colors[watch]} watch`)
       }
       if(wearing.length >= 1){
-        return `are wearing ${combine(wearing)}`
+        return `is wearing ${combine(wearing)}`
       }
     }
   }
@@ -176,7 +176,7 @@ export function describe(trait_obj){
       phrases.hat(),
       phrases.clothes()
     ])
-  ].filter(s => s && s.length > 0).join(' ').replaceAll(' .','.')
+  ].filter(s => s && s.length > 0).join(' ').replaceAll(' .','.').replaceAll('  ',' ')
 }
 
 function combine(arr){
