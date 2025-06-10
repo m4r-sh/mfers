@@ -14,6 +14,8 @@
 
 <div align="center">quick and easy access to <a href="https://opensea.io/collection/mfers">mfers</a> metadata</div>
 
+---
+
 > Looking for JSON data files? Check [here](https://github.com/m4r-sh/mfers/tree/main/data)
 
 ## Install
