@@ -76,6 +76,7 @@ Object.defineProperties(Mfer.prototype, {
   match: {
     value(obj={}){
       let cursor = 0, out = {};
+      if(Object.keys(obj).length == 0){ return true }
       if(this.traits['1/1']){
         return obj.type && obj.type.includes('1/1') && Object.keys(obj).length == 1
       }
