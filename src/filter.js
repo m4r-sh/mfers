@@ -14,13 +14,19 @@ let shortcuts = {
   'smoke': 's'
 }
 
-export function queryToFilter(q){
+export function queryToFilter(q=''){
   let obj = {}
+  if(q.length == 0){ return obj }
   q.split('-').forEach(x => {
-    let [short, num_string] = x.split('.')
-    let c = Object.entries(shortcuts).find(([k,v]) => v == short || k == short)[0]
-    let nums = num_string.split('').map(n => decodeChar(n))
-    obj[c] = nums.map(n => expanded_categories[c][n] || 'none')
+    let [short='', num_string=''] = x.split('.')
+    if(short && num_string && short.length > 0 && num_string.length > 0){
+    let res = Object.entries(shortcuts).find(([k,v]) => v == short || k == short)
+    if(res){
+      let c = res[0]
+      let nums = num_string.split('').map(n => decodeChar(n))
+      obj[c] = nums.map(n => expanded_categories[c][n] || 'none')
+    }
+    }
   })
   return obj
 }
