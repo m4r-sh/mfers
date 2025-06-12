@@ -1,22 +1,8 @@
 // 1. extract type from bg
 // 2. add "none" value
-// 3. add chain to clothes
+// 3. combine shirt and chain
 // 4. combine hairs
 // 5. remove headphones if pilot
-
-let shortcuts = {
-  'background': 'bg',
-  'type': 'mf',
-  'clothes': 'c',
-  '4:20 watch': 'w',
-  'beard': 'b',
-  'eyes': 'e',
-  'hair': 'hr',
-  'hat': 'ht',
-  'headphones': 'p',
-  'mouth': 'm',
-  'smoke': 's'
-}
 
 export function categoryToTraits(c){
   let traits = [c]
@@ -95,6 +81,13 @@ export let categories = {
   ],
   "smoke": [ 
     void 0,"cig black", "cig white", "pipe"
+  ]
+}
+
+export let expanded_categories = {
+  ...categories,
+  "type": [
+    "plain mfer", "charcoal mfer", "zombie mfer", "ape mfer", "alien mfer", "1/1"
   ]
 }
 
