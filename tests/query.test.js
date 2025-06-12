@@ -7,14 +7,14 @@ test('mfer query filtering', () => {
   expect(filterToQuery({
     background: ['red','orange'],
     'hat': ['none']
-  })).toBe('bg:01+ht:0')
+  })).toBe('bg.01-ht.0')
 
-  expect(queryToFilter('bg:01+ht:0')).toEqual({
+  expect(queryToFilter('bg.01-ht.0')).toEqual({
     background: ['red','orange'],
     'hat': ['none']
   })
 
-  expect(queryToFilter('background:01+hat:0')).toEqual({
+  expect(queryToFilter('background.01-hat.0')).toEqual({
     background: ['red','orange'],
     'hat': ['none']
   })

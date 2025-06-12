@@ -16,8 +16,8 @@ let shortcuts = {
 
 export function queryToFilter(q){
   let obj = {}
-  q.split('+').forEach(x => {
-    let [short, num_string] = x.split(':')
+  q.split('-').forEach(x => {
+    let [short, num_string] = x.split('.')
     let c = Object.entries(shortcuts).find(([k,v]) => v == short || k == short)[0]
     let nums = num_string.split('').map(n => decodeChar(n))
     obj[c] = nums.map(n => categories[c][n] || 'none')
@@ -34,7 +34,7 @@ export function filterToQuery(fil){
       )
     ))
   })
-  return Object.entries(obj).map(([k,a]) => `${shortcuts[k]}:${a.join('')}`).join('+')
+  return Object.entries(obj).map(([k,a]) => `${shortcuts[k]}.${a.join('')}`).join('-')
 }
 
 function decodeChar(c) {
