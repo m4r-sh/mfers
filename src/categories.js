@@ -50,7 +50,7 @@ function getVariantCode(mfer,category){
 
 export let categories = {
   "background": [ 
-    "red", "orange", "graveyard", "green", "yellow", "blue", "tree", "space"
+    "orange","red","green", "yellow","blue","graveyard","tree","space"
   ],
   "type": [ 
     "plain mfer", "charcoal mfer"
