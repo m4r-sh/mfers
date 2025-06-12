@@ -2,7 +2,9 @@ import { mferdata } from "./_data";
 import { Mfer } from './Mfer'
 import { describe } from "./describe";
 import { background_colors } from "./colors";
-import { traits, uniques } from "./traits";
+import { traits } from "./traits";
+import { categories, categoryToTraits, traitToCategory, uniques } from "./categories";
+import { queryToFilter, filterToQuery } from "./filter";
 
 const mfers = initMfers()
 
@@ -14,4 +16,8 @@ function initMfers(){
   return arr
 }
 
-export { mfers, describe, traits, background_colors }
+function findMfers(obj){
+  return mfers.filter(mfer => mfer.match(obj))
+}
+
+export { mfers, describe, traits, background_colors, uniques, categories, findMfers, queryToFilter, filterToQuery }

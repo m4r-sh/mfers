@@ -42,34 +42,3 @@ export let traits = {
     "cig black", "cig white", "pipe"
   ]
 }
-
-export let bit_frames = Object.keys(traits).reduce((o,trait_type) => {
-  o[trait_type] = (traits[trait_type].length).toString(2).length
-  return o
-},{})
-
-export let bits_per_mfer = Object.values(bit_frames).reduce((s,v) => s + v, 0)
-
-export let uniques = {
-  "140": "pop mfer",
-  "781": "meeb mfer",
-  "1825": "comic mfer",
-  "2293": "loot'n mfer",
-  "2506": "ring mfer",
-  "3942": "glyph mfer",
-  "4482": "beep mfer",
-  "5476": "cool mfer",
-  "5659": "nakamoto mfer",
-  "5688": "punk mfer",
-  "6551": "xmfer",
-  "7456": "gang mfer",
-  "7503": "gutter mfer",
-  "8434": "squiggly mfer",
-  "8618": "fidenz mfer",
-  "9035": "noun mfer",
-  "9205": "peaceful mfer",
-  "9292": "cdb mfer",
-  "9547": "bored mfer",
-  "9860": "moon mfer",
-  "9967": "toad mfer"
-}
