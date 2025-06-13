@@ -1,9 +1,9 @@
 import mfers_data from '../data/mfers.json'
 import { categories, categoryToTraits, bit_frames, bits_per_mfer } from '../src/categories'
 
-Bun.write(`./src/_data.js`, `export const mferdata = new Uint8Array([
+Bun.write(`./src/_data.js`, `export function mferdata(){ return new Uint8Array([
   ${compress(mfers_data).join(',')}
-])`)
+]) }`)
 
 function getVariantCode(mfer,category){
   let traits = categoryToTraits(category)

@@ -26,22 +26,22 @@ bun install mfers
 ```
 
 ```js
-import { mfers, traits, describe, background_colors } from 'mfers';
+import { getMfers, findMfers, describe } from 'mfers';
 ```
 
 
 ## API
 
 
-### `mfers`
+### `getMfers()`
 
-An ordered array of mfer metadata. Index in array = mfer token id (mfer #6308 ~> `mfer[6308]`)
+returns an ordered array of mfer metadata. Index in array = mfer token id (mfer #6308 ~> `mfers[6308]`)
 
 ```js
-import { mfers } from 'mfers';
+import { getMfers } from 'mfers';
 
+let mfers = getMfers()
 mfers[6308].id // ~> 6308
-
 mfers[6308].traits
 // {
 //   background: "blue",

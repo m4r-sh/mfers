@@ -1,5 +1,7 @@
 import { test, expect } from 'bun:test'
-import { mfers, oneofones } from '../src'
+import { getMfers, oneofones } from '../src'
+
+let mfers = getMfers()
 
 test('mfer 0 API test', () => {
   expect([...mfers[0]]).toEqual([

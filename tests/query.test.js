@@ -1,6 +1,5 @@
 import { test, expect } from 'bun:test'
-import mfers_json from '../data/mfers.json'
-import { findMfers, mfers, queryToFilter, filterToQuery } from '../src'
+import { findMfers, queryToFilter, filterToQuery } from '../src'
 
 test('mfer query filtering', () => {
 

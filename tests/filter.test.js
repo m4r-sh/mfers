@@ -1,6 +1,8 @@
 import { test, expect } from 'bun:test'
 import mfers_json from '../data/mfers.json'
-import { findMfers, mfers } from '../src'
+import { findMfers, getMfers } from '../src'
+
+let mfers = getMfers()
 
 test('mfer filter matching', () => {
   expect(mfers.filter(mfer => mfer.match({
